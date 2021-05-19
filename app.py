@@ -1,16 +1,10 @@
-import dash
+from WebApp.mainapp import app
 import dash_html_components as html
 import flask
 from REST_API.rest_api import API
+from WebApp.Layout import Layout
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__)
-
-
-app.layout = html.Div()
-
+app.layout = Layout()
 app.server.register_blueprint(API)
 
-
-
-app.run_server(debug=False, host='0.0.0.0',port=90)
+app.run_server(debug=False, host='0.0.0.0', port=90)

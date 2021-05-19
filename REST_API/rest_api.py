@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, Response
 import pandas as pd
 import json
 
@@ -44,13 +44,20 @@ def get_from_base():
     data = pd.read_json("dataset.json")
     if 'ville' in args:
         data = data.drop(data[data['ville'] != args['ville']].index)
+
     if 'etat_d_avancement' in args:
         data = data.drop(data[data['etat_d_avancement'] != args['etat_d_avancement']].index)
+
     data = data.dropna(axis=1)
+
+    if data.shape[0] < 1:
+        return Response("Combnation not found", status=404)
     return jsonify(data.to_dict('records'))
 
 
-@API.route('/API/v1/listi/by_id/<id>', methods=['GET'])
+# List investments by id
+
+@API.route('/API/v1/list/by_id/<id>', methods=['GET'])
 def get_by_id(id):
     """
     Function that allows to filter by id
@@ -59,8 +66,11 @@ def get_by_id(id):
     data = pd.read_json("dataset.json")
     # data = data.drop(data[data['codeuai'] != id].index)
     # data = data.dropna(axis=1)
-    data = data.iloc[int(id)]
-    data = data.dropna()
+    try:
+        data = data.iloc[int(id)]
+        data = data.dropna()
+    except:
+        return Response("Invalid id", status=404)
     return jsonify(data.to_dict())
 
 # @simple.route('/', methods=['GET'])
