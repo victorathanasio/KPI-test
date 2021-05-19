@@ -28,7 +28,7 @@ def get_all():
     """
     with open('dataset.json') as json_file:
         data = json.load(json_file)
-    return jsonify(data, ensure_ascii=False)
+    return jsonify(data)
 
 
 # List investments filtered by ville and/or by etat_d_avancement
@@ -47,21 +47,21 @@ def get_from_base():
     if 'etat_d_avancement' in args:
         data = data.drop(data[data['etat_d_avancement'] != args['etat_d_avancement']].index)
     data = data.dropna(axis=1)
-    return jsonify(data.to_dict('records'), ensure_ascii=False)
+    return jsonify(data.to_dict('records'))
 
 
-@API.route('/API/v1/list/by_id/<id>', methods=['GET'])
+@API.route('/API/v1/listi/by_id/<id>', methods=['GET'])
 def get_by_id(id):
     """
     Function that allows to filter by id
     :return: json that contains the filtered data
     """
     data = pd.read_json("dataset.json")
-
-    data = data.drop(data[data['codeuai'] != id].index)
-    data = data.dropna(axis=1)
-    print(data.to_dict('records'))
-    return jsonify(data.to_dict('records'), ensure_ascii=False)
+    # data = data.drop(data[data['codeuai'] != id].index)
+    # data = data.dropna(axis=1)
+    data = data.iloc[int(id)]
+    data = data.dropna()
+    return jsonify(data.to_dict())
 
 # @simple.route('/', methods=['GET'])
 # def home():
