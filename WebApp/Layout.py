@@ -82,6 +82,7 @@ def Layout():
     ])
 
 
+
 @app.callback([Output('confirm', 'displayed'),
                Output('Table', 'data')],
               Input('submit', 'n_clicks'),
