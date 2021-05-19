@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 import pandas as pd
 import json
+
 # import requests
 #
 # # requests.get()
@@ -18,6 +19,7 @@ import json
 
 API = Blueprint('simple_page', __name__)
 
+
 @API.route('/API/v1/list_all', methods=['GET'])
 def get_all():
     """
@@ -26,7 +28,8 @@ def get_all():
     """
     with open('dataset.json') as json_file:
         data = json.load(json_file)
-    return jsonify(data)
+    return jsonify(data, ensure_ascii=False)
+
 
 # List investments filtered by ville and/or by etat_d_avancement
 
@@ -39,14 +42,26 @@ def get_from_base():
     """
     args = request.args
     data = pd.read_json("dataset.json")
-    print(data.shape)
     if 'ville' in args:
-        data = data.drop(data[data['ville']!=args['ville']].index)
+        data = data.drop(data[data['ville'] != args['ville']].index)
     if 'etat_d_avancement' in args:
-        data = data.drop(data[data['etat_d_avancement']!=args['etat_d_avancement']].index)
+        data = data.drop(data[data['etat_d_avancement'] != args['etat_d_avancement']].index)
     data = data.dropna(axis=1)
-    return jsonify(data.to_dict('records'))
+    return jsonify(data.to_dict('records'), ensure_ascii=False)
 
+
+@API.route('/API/v1/list/by_id/<id>', methods=['GET'])
+def get_by_id(id):
+    """
+    Function that allows to filter by id
+    :return: json that contains the filtered data
+    """
+    data = pd.read_json("dataset.json")
+
+    data = data.drop(data[data['codeuai'] != id].index)
+    data = data.dropna(axis=1)
+    print(data.to_dict('records'))
+    return jsonify(data.to_dict('records'), ensure_ascii=False)
 
 # @simple.route('/', methods=['GET'])
 # def home():
@@ -83,5 +98,3 @@ def get_from_base():
 # @simple.route('/api/ville/<ville>', methods=['GET'])
 # def ville(ville):
 #     return jsonify({"ville":ville})
-
-
