@@ -7,12 +7,16 @@ import pandas as pd
 from WebApp.mainapp import app
 import json
 
+#Loads initial data
+
 df = pd.read_json('dataset.json')
 df = df[['ville', 'etat_d_avancement', 'titreoperation', 'mandataire', 'lycee', 'codeuai',
          'entreprise', 'maitrise_d_oeuvre', 'ppi', 'notification_du_marche', 'annee_de_livraison',
          'cao_attribution', 'longitude', 'montant_des_ap_votes_en_meu', 'latitude', 'mode_de_devolution',
          'annee_d_individualisation', 'enveloppe_prev_en_meu', 'nombre_de_lots']]
 
+
+#Function that returns the Layout of the page
 
 def Layout():
     return html.Div([
@@ -84,6 +88,8 @@ def Layout():
     ])
 
 
+# Function for updating the database 
+
 @app.callback([Output('confirm', 'displayed'),
                Output('Table', 'data')],
               Input('submit', 'n_clicks'),
@@ -101,6 +107,8 @@ def display_confirm(n_clicks, table):
             json.dump(table, outfile)
         return True, df.to_dict('records')
 
+
+#Function for redrecting to the single item view
 
 @app.callback(Output('url', 'pathname'),
               Input('new_window', 'n_clicks'),
