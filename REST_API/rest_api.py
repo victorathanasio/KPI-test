@@ -37,7 +37,7 @@ def get_from_base():
     data = data.dropna(axis=1)
 
     if data.shape[0] < 1:
-        return Response("Combnation not found", status=404)
+        return Response("Combination not found", status=404)
     return jsonify(data.to_dict('records'))
 
 
@@ -61,7 +61,7 @@ def get_by_id(id):
     return jsonify(data.to_dict())
 
 
-# List investments by id
+# View elements by id
 
 @API.route('/single_view/<id>', methods=['GET'])
 def view_by_id(id):
