@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Single view</title>
+</head>
+<body>
+
+<ol>
+<!-- For loop logic of jinja template -->
+{%for key in data%}
+
+    <li><strong>{{ key }}</strong> : {{ data[key] }}</li>
+{%endfor%}
+
+</ol>
+
+<form method="get" action="/">
+    <button type="submit">Go back</button>
+</form>
+
+</body>
+</html>

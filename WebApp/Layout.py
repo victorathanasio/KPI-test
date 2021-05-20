@@ -79,6 +79,8 @@ def Layout():
             message='Dataset updated !!',
         ),
 
+        dcc.Location(id='url', refresh=True)
+
     ])
 
 
@@ -98,5 +100,23 @@ def display_confirm(n_clicks, table):
         with open('dataset.json', 'w') as outfile:
             json.dump(table, outfile)
         return True, df.to_dict('records')
+
+
+@app.callback(Output('url', 'pathname'),
+              Input('new_window', 'n_clicks'),
+              State('Table', 'active_cell'),
+              State('Table', 'derived_virtual_data'),
+              State('Table', 'data')
+              )
+def go_to_single_view(n_clicks, active_cell, derived_data, data):
+    if n_clicks is not None:
+        desired_row = pd.DataFrame(derived_data).iloc[active_cell['row']].dropna().to_dict()
+        data = pd.DataFrame(data)
+        for key in desired_row:
+            data = data[data[key] == desired_row[key]]
+        index = data.index[0]
+        return '/single_view/{}'.format(index)
+    else:
+        return '/'
 
 
