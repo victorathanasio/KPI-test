@@ -14,8 +14,10 @@ To access a page with all the details of a given investment, you just select it 
 # Bonus stages
 
 The endpoint in already working from the previous stage
+
 The application can be found in this link ()
-Due to the restrained time, here () you have another application that I developed during a hackaton with some very cool graphs (they are all interactive, do not hesitate clicking in the first level of the pie-chart)
+
+Due to the restrained time, here (http://jwallet.ml) you have another application that I developed during a hackaton with some very cool graphs (they are all interactive, do not hesitate in clicking in the first level of the pie-chart)
 
 # Runing the project
 
