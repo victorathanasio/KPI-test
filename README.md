@@ -15,7 +15,7 @@ To access a page with all the details of a given investment, you just select it 
 
 The endpoint in already working from the previous stage
 
-The application can be found in this link (https://kpi-demo0.herokuapp.com/?)
+The application can be found in this link (https://kpi-demo0.herokuapp.com/)
 
 Due to the restrained time, here (http://jwallet.ml) you have another application that I developed during a hackaton with some very cool graphs (they are all interactive, do not hesitate in clicking in the first level of the pie-chart)
 
