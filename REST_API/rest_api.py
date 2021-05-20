@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, Response
+from flask import Blueprint, jsonify, request, Response, render_template
 import pandas as pd
 import json
 
@@ -72,6 +72,24 @@ def get_by_id(id):
     except:
         return Response("Invalid id", status=404)
     return jsonify(data.to_dict())
+
+
+# List investments by id
+
+@API.route('/single_view/<id>', methods=['GET'])
+def view_by_id(id):
+    """
+    Function that creates a view for a single investment
+    """
+    data = pd.read_json("dataset.json")
+    try:
+        data = data.iloc[int(id)]
+        data = data.dropna()
+    except:
+        return Response("Invalid id", status=404)
+
+    data = data.to_dict()
+    return render_template("single_view.html", data=data)
 
 # @simple.route('/', methods=['GET'])
 # def home():
