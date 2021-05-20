@@ -19,7 +19,10 @@ The table in the Home Screen is :
 * Has built-in filters
 * Allows hiding undesirable columns.
 
-To access **a page with all the details of a given investment**, you just select it in the table (by clicking in it, and the cell will turn red) and use the button "open in new window" (bellow the table) to see it's details.
+To access **a page with all the details of a given investment**, you just select it in the table (by clicking in it, and the cell will turn red) and use the button "open in new window" (bellow the table) to see it's details. 
+
+
+[Here](https://youtu.be/0c9O_Gs5f_U) we have a example of how to use some functionalities !
 
 # Bonus stages
 
