@@ -69,6 +69,7 @@ def get_by_id(id):
     try:
         data = data.iloc[int(id)]
         data = data.dropna()
+
     except:
         return Response("Invalid id", status=404)
     return jsonify(data.to_dict())
