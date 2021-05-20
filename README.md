@@ -9,7 +9,12 @@ NB : For the id, I choosed a new indexation, because there were no consistent pr
 # Stage 2: Web application
 
 This stage was implemented using the library Dash.
-The table in the Home Screen is scrollable from left to write, and up and down. It's also editable (So it acts as an endpoint,  and you can submit your changes using the button below the table itself) and it's has built-in filters.
+
+The table in the Home Screen is :
+* Scrollable from left to write, and up and down 
+* Editable (So it acts as an endpoint,  and you can submit your changes using the button below the table itself)
+* Has built-in filters
+* Allows hiding undesirable columns.
 
 To access a page with all the details of a given investment, you just select it in the table (The cell will turn red) and use the button bellow the table.
 
