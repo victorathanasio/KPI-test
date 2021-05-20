@@ -4,6 +4,8 @@
 
 All the functionalities of the REST API are under the module REST_API and they where implemented using Flask.
 
+NB : For the id, I choosed a new indexation, because there were no consistent property that could be used as a Key in the json. (The nex indexation is just the order in with the elements are in the json).
+
 # Stage 2: Web application
 
 This stage was implemented using the library Dash.
